@@ -1,0 +1,113 @@
+package snake;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JPanel;
+
+import snake.Snake.Directions;
+
+public class Panel extends JPanel implements KeyListener, Runnable {
+	private static final long serialVersionUID = 1L;
+
+	private int FPS = 8;
+	private int sleepTime = 1000/FPS;
+
+	private Snake snake;
+	private Fruit fruit;
+
+	//	private final int POINTS = 10;
+	//	private int score = 0;
+
+	private Thread thread;
+	private boolean running = false;
+
+	public Panel(){
+		this.setOpaque(true);
+		this.setBackground(new Color(51, 51, 51));
+		thread = new Thread(this, "First Thread");
+		this.addKeyListener(this);
+		this.setFocusable(true);
+		this.requestFocus();
+		snake = new Snake();
+		fruit = new Fruit();
+		running = true;
+		thread.start();
+	}
+
+	@Override
+	public synchronized void paintComponent(Graphics g){
+		super.paintComponent(g);
+		for( SnakeTile tile : snake.getTiles() ){
+			tile.draw(g);
+		}
+		fruit.draw(g);
+	}
+
+	public void gameOver(Graphics g){
+		g.setColor(new Color(51, 51, 51));
+		g.fillRect(0, 0, 570, 330);
+		g.setColor(Color.WHITE);
+		g.drawString("Game Over", 250, 330/2);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_UP:
+			if( !snake.getDirection().equals(Directions.DOWN) )
+				snake.setDirection(Directions.UP);
+			break;
+		case KeyEvent.VK_DOWN:
+			if( !snake.getDirection().equals(Directions.UP) )
+				snake.setDirection(Directions.DOWN);
+			break;
+		case KeyEvent.VK_RIGHT:
+			if( !snake.getDirection().equals(Directions.LEFT) )
+				snake.setDirection(Directions.RIGHT);
+			break;
+		case KeyEvent.VK_LEFT:
+			if( !snake.getDirection().equals(Directions.RIGHT) )
+				snake.setDirection(Directions.LEFT);
+			break;
+		}
+	}
+
+	public boolean collide(SnakeTile tile, Fruit fruit){
+		return (tile.getX() == fruit.getX()) && (tile.getY() == fruit.getY());
+	}
+
+	public boolean collideBounds(SnakeTile tile){
+		return (tile.getX() < 0) || (tile.getX() > 570) || (tile.getY() < 0 ) || (tile.getY() > 330);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	@Override
+	public void run() {
+		while (running) {
+			if(collideBounds(snake.getHead()) || snake.collideItSelf() ){
+				running = false;
+			}
+			if(collide(snake.getHead(), fruit)){
+				System.out.println(this.getParent().getComponent(2));
+				snake.addTile();
+				fruit.setRandomLocation();
+			}
+			snake.update();
+			repaint();
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		gameOver(getGraphics());
+	}
+}

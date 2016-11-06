@@ -1,0 +1,42 @@
+package snake;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Board extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
+	public Board() {
+		this.setBounds(100, 100, 600, 400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Snake");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		
+		Panel panel = new Panel();
+		panel.setBounds(12, 30, 574, 332);
+		getContentPane().add(panel);
+		
+		JLabel scoreLabel = new JLabel("Score:");
+		scoreLabel.setBounds(34, 12, 45, 15);
+		getContentPane().add(scoreLabel);
+		
+		JLabel scoredPointsLabel = new JLabel("0000");
+		scoredPointsLabel.setBounds(91, 12, 70, 15);
+		getContentPane().add(scoredPointsLabel);
+
+		this.setVisible(true);
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+

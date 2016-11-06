@@ -1,0 +1,104 @@
+package snake;
+
+import java.util.ArrayList;
+
+public class Snake {
+
+	public enum Directions { LEFT, RIGHT, DOWN, UP }
+	private Directions direction;
+
+	private ArrayList<SnakeTile> tiles = new ArrayList<SnakeTile>();
+
+	private int headX;
+	private int headY;
+	private int SPEED = 10;
+
+	public Snake() {
+		direction = Directions.RIGHT;
+		tiles.add(new SnakeTile(50, 50));
+		tiles.add(new SnakeTile(40, 50));
+		tiles.add(new SnakeTile(30, 50));
+	}
+
+	public void addTile() {
+		int tailX 
+		int tailY
+		switch (this.direction) {
+		case LEFT:
+			tailX = tiles.get(tiles.size()-1).getX() + 10;
+			tailY = tiles.get(tiles.size()-1).getY() + 10;
+			break;
+		case RIGHT:
+			tailX = tiles.get(tiles.size()-1).getX() + 10;
+			tailY = tiles.get(tiles.size()-1).getY() + 10;
+			break;
+		case UP:
+			tailX = tiles.get(tiles.size()-1).getX() + 10;
+			tailY = tiles.get(tiles.size()-1).getY() + 10;
+			break;
+		case DOWN:
+			tailX = tiles.get(tiles.size()-1).getX() + 10;
+			tailY = tiles.get(tiles.size()-1).getY() + 10;
+			break;
+		}
+		tiles.add(new SnakeTile(tailX, tailY));
+	}
+
+	public void update(){
+		headX = tiles.get(0).getX();
+		headY = tiles.get(0).getY();
+
+		switch (this.direction) {
+		case LEFT:
+			tiles.get(0).moveX( -SPEED );
+			break;
+		case RIGHT:
+			tiles.get(0).moveX( SPEED );
+			break;
+		case UP:
+			tiles.get(0).moveY( -SPEED );
+			break;
+		case DOWN:
+			tiles.get(0).moveY( SPEED );
+			break;
+		}
+
+		int tempX, tempY;
+		for(int i = 1; i < tiles.size(); i++){
+			tempX = tiles.get(i).getX();
+			tempY = tiles.get(i).getY();
+			tiles.get(i).setX(headX);
+			tiles.get(i).setY(headY);
+			headX = tempX;
+			headY = tempY;
+		}
+	}
+
+	public SnakeTile getHead(){
+		return tiles.get(0);
+	}
+	
+	public int getHeadX(){
+		return this.headX;
+	}
+
+	public int getHeadY(){
+		return this.headY;
+	}
+
+	public int getSpeed(){
+		return this.SPEED;
+	}
+
+	public Directions getDirection(){
+		return this.direction;
+	}
+
+	public void setDirection( Directions direction ){
+		this.direction = direction;
+	}
+
+	public ArrayList<SnakeTile> getTiles(){
+		return this.tiles;
+	}
+}

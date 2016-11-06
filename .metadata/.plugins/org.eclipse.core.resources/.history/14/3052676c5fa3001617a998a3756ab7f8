@@ -1,0 +1,72 @@
+package snake;
+
+import java.util.ArrayList;
+
+public class Snake {
+
+	public enum Directions { LEFT, RIGHT, DOWN, UP }
+	private Directions direction;
+
+	private ArrayList<SnakeTile> tiles = new ArrayList<SnakeTile>();
+	
+	private int headX;
+	private int headY;
+	private final int SPEED = 5;
+
+	public Snake() {
+		direction = Directions.RIGHT;
+		tiles.add(new SnakeTile(50, 50));
+		tiles.add(new SnakeTile(40, 50));
+		tiles.add(new SnakeTile(30, 50));
+		headX = tiles.get(0).getX();
+		headY = tiles.get(0).getY();
+		
+	}
+
+	public void add(SnakeTile tile) {
+
+	}
+
+	public void update(){
+		headX = tiles.get(0).getX();
+		headY = tiles.get(0).getY();
+		switch (this.direction) {
+		case LEFT:
+			tiles.get(0).moveX( -SPEED );
+			break;
+		case RIGHT:
+			tiles.get(0).moveX( SPEED );
+			break;
+		case UP:
+			tiles.get(0).moveY( -SPEED );
+			break;
+		case DOWN:
+			tiles.get(0).moveY( SPEED );
+			break;
+		}
+	}
+
+	public int getHeadX(){
+		return this.headX;
+	}
+	
+	public int getHeadY(){
+		return this.headY;
+	}
+	
+	public int getSpeed(){
+		return this.SPEED;
+	}
+
+	public Directions getDirection(){
+		return this.direction;
+	}
+
+	public void setDirection( Directions direction ){
+		this.direction = direction;
+	}
+
+	public ArrayList<SnakeTile> getTiles(){
+		return this.tiles;
+	}
+}

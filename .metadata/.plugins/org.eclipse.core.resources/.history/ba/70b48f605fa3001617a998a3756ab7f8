@@ -1,0 +1,38 @@
+package snake;
+
+public class SnakeTile {
+	private final int WIDTH = 10;
+	private final int HEIGHT = 10;
+	
+	private int x;
+	private int y;
+	
+	public SnakeTile( int x, int y ) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public int getX() {
+		return this.x;
+	}
+
+	public void moveX( int x ){
+		this.x += x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	
+	public void moveY( int y ){
+		this.y += y;
+	}
+	
+	public int getWidth() {
+		return this.WIDTH;
+	}
+	
+	public int getHeight() {
+		return this.HEIGHT;
+	}
+}

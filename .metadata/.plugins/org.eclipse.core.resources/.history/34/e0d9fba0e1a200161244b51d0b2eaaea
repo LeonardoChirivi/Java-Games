@@ -1,0 +1,33 @@
+package snake;
+
+import javax.swing.JFrame;
+
+public class Board extends JFrame{
+	private static final long serialVersionUID = 1L;
+	
+	public Board() {
+		this.setBounds(100, 100, 600, 400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Snake");
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
+		getContentPane().setLayout(null);
+		
+		Panel panel = new Panel();
+		panel.setBounds(12, 30, 574, 332);
+		getContentPane().add(panel);
+
+		this.setVisible(true);
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+

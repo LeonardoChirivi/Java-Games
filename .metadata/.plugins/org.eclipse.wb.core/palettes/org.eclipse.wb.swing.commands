@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+	<addCategory
+		id="category_1478299278665"
+		name="Custom"
+		description="Container for custom components"
+		visible="true"
+		open="true"/>
+	<addComponent
+		id="custom_1478299278665"
+		name="Panel"
+		description="Creates java.awt.Panel component."
+		visible="true"
+		class="java.awt.Panel"
+		category="category_1478299278665"/>
+	<addComponent
+		id="custom_1478299297514"
+		name="Panel"
+		description="Creates snake.Panel component."
+		visible="true"
+		class="snake.Panel"
+		category="category_1478299278665"/>
+	<addComponent
+		id="custom_1478299409141"
+		name="Panel"
+		description="Creates snake.Panel component."
+		visible="true"
+		class="snake.Panel"
+		category="category_1478299278665"/>
+	<addComponent
+		id="custom_1478299434177"
+		name="Panel"
+		description="Creates snake.Panel component."
+		visible="true"
+		class="snake.Panel"
+		category="category_1478299278665"/>
+</commands>
