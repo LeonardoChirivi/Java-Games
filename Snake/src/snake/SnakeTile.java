@@ -11,16 +11,12 @@ import java.awt.Graphics2D;
  * @author Leonardo Chirivì
  *
  */
-public class SnakeTile {
-	private final int WIDTH = 10;
-	private final int HEIGHT = 10;
-	
-	private int x;
-	private int y;
+public class SnakeTile extends Tile {
 	
 	public SnakeTile( int x, int y ) {
-		this.x = x;
-		this.y = y;
+		super();
+		super.x = x;
+		super.y = y;
 	}
 	
 	/**
@@ -42,43 +38,11 @@ public class SnakeTile {
 	}
 	
 	/**
-	 * Gets current x coordinate.
-	 * @return x coordinate
-	 */
-	public int getX() {
-		return this.x;
-	}
-	
-	/**
-	 * Sets new x coordinate.
-	 * @param x new coordinate
-	 */
-	public void setX(int x) {
-		this.x = x;
-	}
-	
-	/**
 	 * Moves y coordinate by adding (or subtracting param is negatve) new value to existing coordinate. 
 	 * @param y value to be added
 	 */
 	public void moveY( int y ) {
 		this.y += y;
-	}
-	
-	/**
-	 * Gets current y coordinate.
-	 * @return y coordinate
-	 */
-	public int getY() {
-		return this.y;
-	}
-	
-	/**
-	 * Sets new y coordinate.
-	 * @param y new coordinate.
-	 */
-	public void setY(int y) {
-		this.y = y;
 	}
 
 }

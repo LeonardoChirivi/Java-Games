@@ -12,12 +12,8 @@ import java.util.Random;
  * @author Leonardo Chirivì
  *
  */
-public class Fruit {
+public class Fruit extends Tile {
 
-	private int x;
-	private int y;
-	private final int WIDTH = 10;
-	private final int HEIGHT = 10;
 	Random rand = new Random();
 
 	public Fruit() {
@@ -58,19 +54,4 @@ public class Fruit {
 		return (int) c;
 	}
 	
-	/**
-	 * Gets x current coordinate.
-	 * @return x coordinate
-	 */
-	public int getX() {
-		return this.x;
-	}
-	
-	/**
-	 * Gets y current coordinate.
-	 * @return y coordinate
-	 */
-	public int getY() {
-		return this.y;
-	}
 }
