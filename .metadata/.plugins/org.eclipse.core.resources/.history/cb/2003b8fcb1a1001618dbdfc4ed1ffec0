@@ -1,7 +1,0 @@
-package snake;
-
-public class Main {
-	public Main() {
-		new Board();
-	}
-}

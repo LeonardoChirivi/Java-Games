@@ -24,8 +24,9 @@ import snake.Snake.Directions;
 public class Panel extends JPanel implements KeyListener, Runnable {
 	private static final long serialVersionUID = 1L;
 
-	private final int FPS = 9;
-	private final int SLEEP_TIME = 1000/FPS;
+	private final int FPS = 15;
+	private int targetTime = 1000/FPS;
+	private long start, stop, wait;
 
 	private Snake snake;
 	private Fruit fruit;
@@ -64,7 +65,7 @@ public class Panel extends JPanel implements KeyListener, Runnable {
 		snake.draw(g);
 		fruit.draw(g);
 	}
-
+	
 	/**
 	 * Method that displays game over screen.
 	 * 
@@ -142,6 +143,7 @@ public class Panel extends JPanel implements KeyListener, Runnable {
 	@Override
 	public void run() {
 		while (running) {
+			start = System.nanoTime();
 			if(collideBounds(snake.getHead()) || snake.collideItSelf() ) {
 				running = false;
 			}
@@ -153,8 +155,10 @@ public class Panel extends JPanel implements KeyListener, Runnable {
 			}
 			snake.update();
 			repaint();
+			stop = System.nanoTime() - start;
+			wait = targetTime - stop / 1000000;
 			try {
-				Thread.sleep(SLEEP_TIME);
+				Thread.sleep(wait);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
