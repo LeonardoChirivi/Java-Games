@@ -24,7 +24,7 @@ import snake.Snake.Directions;
 public class Panel extends JPanel implements KeyListener, Runnable {
 	private static final long serialVersionUID = 1L;
 
-	private final int FPS = 15;
+	private final int FPS = 10;
 	private int targetTime = 1000/FPS;
 	private long start, stop, wait;
 
